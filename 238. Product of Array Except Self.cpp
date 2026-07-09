@@ -5,17 +5,14 @@ Naively that's two extra arrays — O(n) space. The trick to hit O(1) extra spac
 class Solution {
 public:
     vector<int> productExceptSelf(vector<int>& nums) {
-
-        int n=nums.size();
+        int n = nums.size();
         vector<int> ans(n, 1);
+
         // pass 1: ans[i] = product of everything left of i
-
-        int prefix=1;
-        for(int i;i<n;i++){
-
-            ans[i]=prefix;
+        int prefix = 1;
+        for (int i = 0; i < n; i++) {
+            ans[i] = prefix;
             prefix *= nums[i];
-
         }
 
         // pass 2: multiply in product of everything right of i
@@ -24,6 +21,7 @@ public:
             ans[i] *= suffix;
             suffix *= nums[i];
         }
+
         return ans;
     }
 };
